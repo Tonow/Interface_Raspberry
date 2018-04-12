@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Heure{% endblock %}
+
+
+    <!-- <script>
+    var myVar = setInterval(myTimer, 1000);
+
+    function myTimer() {
+        var d = new Date();
+        document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+
+    }
+    </script> -->
+    {% block head %}
+        <style>
+           body {
+              background-image: url({% static image_name %});
+              background-size: cover;
+           }
+        </style>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="screen"/>
+    {% endblock %}
+
+    {% block nav %}
+        <a href="/date/">Date</a></li>
+    {% endblock %}
+
+    {% block clock %}
+
+
+        <article id="clock">
+            <!-- <div>
+                <h1><a href="/">Test css</a></h1>
+            </div>
+
+            <p>Le nb random est : {{ nb_rand }} </p> -->
+            <!-- <p>Date  : {{ date }} </p>  -->
+            <div id="clock-timebox">
+                <div id="clock-time-wrapper">
+                    <p> {{Titre}} </p>
+                </div>
+            </div>
+            <div id="clock-weatherbox">
+                <p id="clock-weather-condition"> {{ weather_condition }} </p>
+                <p id="clock-weather-temperature"> {{ weather_temperature }} </p>
+            </div>
+
+            <img id="graph" src="{% static 'img/temperature.png' %}" width="500">
+
+            <!-- {% for temperature in temperatureLac %}
+                <div class="temperatureLac">
+                	<h3>Lac</h3>
+                	<p>{{ temperature.date_ajout }}</p>
+                	<p>{{ temperature.degres }}</p>
+                </div>
+            {% endfor %}
+
+            {% for temperature in temperatureActuelle %}
+                <div class="temperatureActuelle">
+                	<h3>Air</h3>
+                	<p>{{ temperature.date_ajout }}</p>
+                	<p>{{ temperature.degres }}</p>
+                </div>
+            {% endfor %} -->
+
+            <!-- <div id="clock-lac">
+                <p id="clock-lac-condition">Lac </p>
+                <p id="clock-lac-temperature"> {{ temperature_lac }} °C </p>
+            </div> -->
+
+            <!-- <img src="{% static 'icon/menu.svg' %}" id="admin-menu"/> -->
+
+
+          <!-- <div id="message">
+              <h1>
+                  <span>Bonjour la Loutre</span>
+                  <span>Je t'aime</span>
+                  <span>Joyeux anniversaire !</span>
+              </h1>
+          </div> -->
+          <!-- <div id="clock-timebox">
+              <div id="clock-time-wrapper"><span id="clock-hour"></span><span id="clock-colon">:</span><span id="clock-minute"></span><span id="clock-second"></span></div>
+              <div id="clock-date">&#xA0;</div>
+          </div>
+          <div id="clock-utcbox">&#xA0;</div>
+          <div id="clock-statusbox">
+              <img src="icon/no-clock.svg" id="clock-status-no-clock" style="display:none"/><img src="icon/no-internet.svg" id="clock-status-no-internet" style="display:none"/><span id="clock-status-computers"></span>
+          </div>
+          <div id="clock-weatherbox">
+              <span id="clock-weather-condition"></span><span id="clock-weather-temperature"></span>
+          </div>
+          <img src="icon/menu.svg" id="admin-menu"/> -->
+        </article>
+    {% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+   {% load static %}
+   <link rel="icon" href="{% static 'img/icon.png' %}">
+   <title>{% block title %}Coucou{% endblock %}</title>
+   {% block head %}{% endblock %}
+   <script src="{% static 'js/main.js' %}"></script>
+   <meta http-equiv="refresh" content="18000" />
+</head>
+<body>
+   <!-- <div class="row first-info" style="background-image: url({% static 'wallpaper/1.jpg' %})" > -->
+   <header>
+   {% block header %}{% endblock %}
+   </header>
+
+      <nav class="nav">
+         {% block nav %}
+          <ul>
+               <li><a href="/graph_lac/">Lac</a></li>
+               <li><a href="/graph_air/">Air</a></li>
+          </ul>
+          {% endblock %}
+      </nav>
+      <section id="content">
+          {% block content %}{% endblock %}
+      </section>
+      {% block clock %}{% endblock %}
+      <section id="bouton">
+      <img src="{% static 'icon/reload.svg' %}" onclick="reload_page()" alt="Recharger" style="padding-bottom: 1.0em; padding-left: 2.0em; top: 1vw; width:8em; cursor:pointer; right: 1vw; position: absolute;"/>
+      <img src="{% static 'icon/enter-full-screen.svg' %}" onclick="maxWindow('http://localhost:8000/date')" alt="Recharger" style="padding-bottom: 1.0em; margin-left: 2.0em; top: 1vw; width:5em; cursor:pointer; right: 1vw; position: relative;"/>
+      </section>
+
+		<!-- <article id="admin-content" style="display:none">
+			<div>
+				<ul>
+					<li id="admin-enter-full-screen-item"><a><img src="{% static 'icon/enter-full-screen.svg' %}" style="width:1.2em; padding:0.1em"/> Enter full screen</a></li>
+					<li id="admin-exit-full-screen-item"><a><img src="{% static 'icon/exit-full-screen.svg' %}" style="width:1.2em; padding:0.1em"/> Exit full screen</a></li>
+					<li><a id="admin-reload-page-button"><img src="{% static 'icon/reload.svg' %}" style="width:1.1em; padding:0.15em"/> Reload this page</a></li>
+					<li><a id="admin-refresh-weather-button"><img src="{% static 'icon/weather.svg' %}" style="width:1.4em; padding:0em"/> Refresh weather data</a> <small>(last updated <span id="admin-last-weather"></span>)</small></li>
+					<li><a id="admin-change-wallpaper-button"><img src="{% static 'icon/picture.svg' %}" style="width:1.2em; padding:0.1em"/> Change wallpaper randomly</a></li>
+				</ul>
+			</div>
+		</article> -->
+   <footer>
+   {% block footer %}{% endblock %}
+   </footer>
+</body>
+</html>

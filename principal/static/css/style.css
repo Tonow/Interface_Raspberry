@@ -1,0 +1,244 @@
+/*---- Whole page ----*/
+
+html, body, h1, h2, p, ul, li {
+	/* Reset some browser defaults */
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #000000;
+	background-size: cover;
+	background-position: center;
+	font-family: "Swiss 721 BT", sans-serif;
+	font-size: 4.2vw;  /* Base font size */
+	font-weight: 400;
+	line-height: 1.0;
+	color: #FFFFFF;
+	-moz-user-select: none;  /* Accidental text selection on touchscreens is annoying */
+}
+
+body {
+	background-color: rgba(0,0,0,0.65);
+	transition: background-color 1.0s ease;
+}
+
+html, body {
+	/* Full-screen web page */
+	height: 100%;
+}
+
+article {
+	/* Full-screen content pages */
+	position: absolute;
+	width: 100%;
+	height: 90%;
+}
+
+p {
+	text-shadow: 0.023em 0.023em 0.023em #202020;;
+}
+
+a:not([href]) {  /* JavaScript buttons */
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* navbar */
+
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+	border-radius: 8px
+}
+
+.nav a {
+    display: block;
+	font-size: 400%;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    background-color: #555;
+    color: white;
+}
+
+
+/* Shared animations */
+
+@keyframes fadein {
+	from { opacity: 0.0; }
+	to { opacity: 1.0; }
+}
+
+.showing, .hiding {
+	animation-fill-mode: both;
+	animation-name: fadein;
+}
+
+.showing {
+	animation-direction: normal;
+}
+
+.hiding {
+	animation-direction: reverse;
+}
+
+/* graphique */
+
+#graph {
+	height: 55%;
+    width: 55%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+
+#clock-timebox {
+	padding-bottom: 1.0em;
+	text-align: center;
+}
+
+#clock-time-wrapper {
+	font-family: "Swiss 721 BT Rounded", "Swiss 721 BT", sans-serif;
+	font-weight: 800;
+	color: #A8A8A8;
+	font-size: 1200%;
+	text-shadow: 0.023em 0.023em 0.023em #202020;
+}
+
+#clock-weatherbox {
+	padding-bottom: 1.0em;
+	position: absolute;
+	right: 1vw;
+	bottom: 1vw;
+	font-weight: 100;
+	font-size: 570%;
+	letter-spacing: 0.01em;
+}
+
+#clock-weather-temperature {
+	white-space: nowrap;
+}
+
+#clock-weatherbox p {
+	color: inherit;
+	text-decoration: none;
+}
+
+#clock-weather-temperature {
+	padding-left: 0.8em;
+	font-size: 130%;
+	font-weight: 600;
+}
+
+/*---- Admin module ----*/
+
+#clock-lac {
+	padding-bottom: 1.0em;
+	position: absolute;
+	left: 1vw;
+	bottom: 1vw;
+	font-weight: 100;
+	font-size: 570%;
+	letter-spacing: 0.01em;
+}
+
+#clock-lac p {
+	color: inherit;
+	text-decoration: none;
+}
+
+
+#clock-lac-temperature {
+	white-space: nowrap;
+}
+
+#clock-lac-temperature {
+	padding-right: 0.8em;
+	font-size: 130%;
+	font-weight: 600;
+}
+
+/*---- Admin module ----*/
+
+#admin-menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 1.2em;
+	padding: 0.4em 0.4em 0.2em 0.2em;
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+#admin-content {
+	box-sizing: border-box;
+	padding: 1.3em;
+}
+
+#admin-content > div {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	padding: 0.8em;
+	border-radius: 0.8em;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+#admin-content ul {
+	list-style-type: none;
+	font-size: 90%;
+}
+
+#admin-content li {
+	margin-top: 0.7em;
+	margin-bottom: 0.7em;
+}
+
+#admin-content a {
+	display: inline-block;
+	padding: 0.47em 0.50em 0.33em;
+	border: 0.06em solid #E8E8E8;
+	border-radius: 0.4em;
+	background-color: #F4F4F4;
+	color: inherit;
+}
+
+#admin-content img {
+	vertical-align: middle;
+}
+
+#admin-content small {
+	font-size: 70%;
+}
+
+#admin-content.showing {
+	animation-duration: 100ms;
+}
+
+#admin-content.hiding {
+	animation-duration: 300ms;
+}
+
+
+/*---- message module ----*/
+
+#message {
+	padding-left: 0.2em;
+	font-size: 57%;
+	font-kerning: none
+	font-family: "Swiss 721 BT Rounded", "Swiss 721 BT", sans-serif;
+	font-weight: 800;
+	color: #A8A8A8;
+	text-shadow: 0.023em 0.023em 0.023em #202020;
+	text-align: center;
+	line-height: 1.0;
+}
