@@ -157,7 +157,6 @@ def graph_air(request):
     # temperature_lac = temperature_lac_bourget()
     weather_condition = actual_weather.get('condition')
     weather_temperature = actual_weather.get('temperature')
-    import pdb; pdb.set_trace()
     getimage(TemperatureActuelle.objects.all())
     return render(request, 'principal/graph.html', {
         'nb_rand': nb_rand,
