@@ -99,6 +99,10 @@ a:not([href]) {  /* JavaScript buttons */
     margin-right: auto
 }
 
+#clock {
+	height: 75%;
+}
+
 
 #clock-timebox {
 	padding-bottom: 1.0em;
@@ -114,7 +118,7 @@ a:not([href]) {  /* JavaScript buttons */
 }
 
 #clock-weatherbox {
-	padding-bottom: 1.0em;
+	padding-bottom: 0.2em;
 	position: absolute;
 	right: 1vw;
 	bottom: 1vw;
@@ -141,7 +145,7 @@ a:not([href]) {  /* JavaScript buttons */
 /*---- Admin module ----*/
 
 #clock-lac {
-	padding-bottom: 1.0em;
+	padding-bottom: 0.2em;
 	position: absolute;
 	left: 1vw;
 	bottom: 1vw;

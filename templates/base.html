@@ -29,7 +29,7 @@
       </section>
       {% block clock %}{% endblock %}
       <section id="bouton">
-      <img src="{% static 'icon/reload.svg' %}" onclick="reload_page()" alt="Recharger" style="padding-bottom: 1.0em; padding-left: 2.0em; top: 1vw; width:8em; cursor:pointer; right: 1vw; position: absolute;"/>
+      <img src="{% static 'icon/reload.svg' %}" onclick="reload_page(); maxWindow('http://localhost:8000/date')" alt="Recharger" style="padding-bottom: 1.0em; padding-left: 2.0em; top: 1vw; width:8em; cursor:pointer; right: 1vw; position: absolute;"/>
       <img src="{% static 'icon/enter-full-screen.svg' %}" onclick="maxWindow('http://localhost:8000/date')" alt="Recharger" style="padding-bottom: 1.0em; margin-left: 2.0em; top: 1vw; width:5em; cursor:pointer; right: 1vw; position: relative;"/>
       </section>
 

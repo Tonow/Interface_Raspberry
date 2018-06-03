@@ -21,6 +21,9 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+number_of_photo = 20
+timeout_grand_lac=55
+
 s = sched.scheduler(time.time, time.sleep)
 bourget_weather_json_url = "http://api.wunderground.com/api/0c8d8fcc4a61d260/conditions/q/FR/Le_Bourget_Du_Lac.json"
 
@@ -36,7 +39,7 @@ def home(request):
 
 def date_actuelle(request):
     # return render(request, 'principal/date.html', {'date': datetime.now()})
-    nb_rand = random.randrange(1, 20)
+    nb_rand = random.randrange(1, number_of_photo)
     image_name = 'wallpaper/' + str(nb_rand) + '.jpg'
     date_derniere_temperature = TemperatureActuelle.objects.last().date_ajout
     print(f'now : {datetime.now()}')
@@ -47,11 +50,14 @@ def date_actuelle(request):
     weather_condition = actual_weather.get('condition')
     weather_temperature = actual_weather.get('temperature')
     if  duree.seconds > 10800:
-        temperature_lac = temperature_lac_bourget()
-        temperature_lac_enregistre = TemperatureLac(degres=temperature_lac)
-        temperature_lac_enregistre.save()
-        temperature_enregistre = TemperatureActuelle(degres=weather_temperature)
-        temperature_enregistre.save()
+        try:
+            temperature_lac = temperature_lac_bourget()
+            temperature_lac_enregistre = TemperatureLac(degres=temperature_lac)
+            temperature_lac_enregistre.save()
+            temperature_enregistre = TemperatureActuelle(degres=weather_temperature)
+            temperature_enregistre.save()
+        except:
+            temperature_lac = "Grand Lac KO"
         return render(request, 'principal/date.html', {
             'nb_rand': nb_rand,
             'image_name': image_name,
@@ -100,7 +106,7 @@ def weather():
 def temperature_lac_bourget():
     page_link ='http://www.grand-lac.fr/meteo/'
     # fetch the content from url
-    page_response = requests.get(page_link, timeout=55)
+    page_response = requests.get(page_link, timeout=timeout_grand_lac)
     # parse html
     page_content = BeautifulSoup(page_response.content, "html.parser")
 
@@ -126,7 +132,7 @@ def temperature_lac_bourget():
 
 def graph_lac(request):
     # return render(request, 'principal/date.html', {'date': datetime.now()})
-    nb_rand = random.randrange(1, 5)
+    nb_rand = random.randrange(1, number_of_photo)
     image_name = 'wallpaper/' + str(nb_rand) + '.jpg'
     actual_weather = weather()
     # temperature_lac = temperature_lac_bourget()
@@ -145,12 +151,13 @@ def graph_lac(request):
 
 def graph_air(request):
     # return render(request, 'principal/date.html', {'date': datetime.now()})
-    nb_rand = random.randrange(1, 5)
+    nb_rand = random.randrange(1, number_of_photo)
     image_name = 'wallpaper/' + str(nb_rand) + '.jpg'
     actual_weather = weather()
     # temperature_lac = temperature_lac_bourget()
     weather_condition = actual_weather.get('condition')
     weather_temperature = actual_weather.get('temperature')
+    import pdb; pdb.set_trace()
     getimage(TemperatureActuelle.objects.all())
     return render(request, 'principal/graph.html', {
         'nb_rand': nb_rand,
@@ -168,10 +175,11 @@ def getimage(data):
     s1 = array([0,1])
     x1 = array([e.date_ajout for e in data ])
     s1 = array([e.degres for e in data ])
-    fig, ax = plt.subplots()
-    plt.plot(x1, s1)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, facecolor=(0.1, 0.3, 0.2, 0.1))
+    ax.plot(x1, s1)
 
-    plt.ylabel('°c')
+    ax.set_ylabel('°c')
     plt.grid(True)
     fig.autofmt_xdate()
 
