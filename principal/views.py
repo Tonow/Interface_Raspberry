@@ -20,8 +20,9 @@ import urllib.request
 from bs4 import BeautifulSoup
 import requests
 import re
+import os, os.path
 
-number_of_photo = 20
+number_of_photo = len([name for name in os.listdir('./static/wallpaper')])
 timeout_grand_lac=55
 
 s = sched.scheduler(time.time, time.sleep)
@@ -43,6 +44,7 @@ def date_actuelle(request):
     image_name = 'wallpaper/' + str(nb_rand) + '.jpg'
     date_derniere_temperature = TemperatureActuelle.objects.last().date_ajout
     print(f'now : {datetime.now()}')
+    print(f'photo : {nb_rand}.jpg')
     print(f'django : {date_derniere_temperature.replace(tzinfo=None)}')
     duree = datetime.now() - date_derniere_temperature.replace(tzinfo=None)
     print(f'duree : {duree.seconds}')
