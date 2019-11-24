@@ -41,15 +41,23 @@ def date_actuelle(request):
     # return render(request, 'principal/date.html', {'date': datetime.now()})
     nb_rand = random.randrange(1, number_of_photo)
     image_name = 'wallpaper/' + str(nb_rand) + '.jpg'
-    date_derniere_temperature = TemperatureActuelle.objects.last().date_ajout
-    print(f'now : {datetime.now()}')
-    print(f'django : {date_derniere_temperature.replace(tzinfo=None)}')
-    duree = datetime.now() - date_derniere_temperature.replace(tzinfo=None)
-    print(f'duree : {duree.seconds}')
+    if TemperatureActuelle.objects.last():
+        date_derniere_temperature = TemperatureActuelle.objects.last().date_ajout
+        print(f'now : {datetime.now()}')
+        print(f'django : {date_derniere_temperature.replace(tzinfo=None)}')
+        duree = datetime.now() - date_derniere_temperature.replace(tzinfo=None)
+        print(f'duree : {duree.seconds}')
+    else:
+        duree = 0
     actual_weather = weather()
-    weather_condition = actual_weather.get('condition')
-    weather_temperature = actual_weather.get('temperature')
-    if  duree.seconds > 10800:
+    try:
+        weather_condition = actual_weather.get('condition', 'none')
+        weather_temperature = actual_weather.get('temperature', 'none')
+    except:
+        weather_temperature = 'none'
+        weather_condition = 'none'
+
+    if duree == 0 or duree.seconds > 10800:
         try:
             temperature_lac = temperature_lac_bourget()
             temperature_lac_enregistre = TemperatureLac(degres=temperature_lac)
@@ -136,7 +144,10 @@ def graph_lac(request):
     image_name = 'wallpaper/' + str(nb_rand) + '.jpg'
     actual_weather = weather()
     # temperature_lac = temperature_lac_bourget()
-    weather_condition = actual_weather.get('condition')
+    try:
+        weather_condition = actual_weather.get('condition', 'none')
+    except:
+        weather_condition = 'none'
     weather_temperature = actual_weather.get('temperature')
     getimage(TemperatureLac.objects.all())
     return render(request, 'principal/graph.html', {
