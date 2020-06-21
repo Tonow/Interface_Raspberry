@@ -22,7 +22,7 @@ import requests
 import re
 
 number_of_photo = 20
-timeout_grand_lac=55
+timeout_grand_lac=65
 
 s = sched.scheduler(time.time, time.sleep)
 bourget_weather_json_url = "http://api.wunderground.com/api/0c8d8fcc4a61d260/conditions/q/FR/Le_Bourget_Du_Lac.json"
@@ -60,12 +60,15 @@ def date_actuelle(request):
     if duree == 0 or duree.seconds > 10800:
         try:
             temperature_lac = temperature_lac_bourget()
+        except:
+            temperature_lac = "Grand Lac KO"
+        try:
             temperature_lac_enregistre = TemperatureLac(degres=temperature_lac)
             temperature_lac_enregistre.save()
             temperature_enregistre = TemperatureActuelle(degres=weather_temperature)
             temperature_enregistre.save()
         except:
-            temperature_lac = "Grand Lac KO"
+            print("temperature lac not saved")
         return render(request, 'principal/date.html', {
             'nb_rand': nb_rand,
             'image_name': image_name,
